@@ -1,0 +1,111 @@
+{
+  "title": "Input",
+  "description": "This is the input to my awesome service",
+  "type": "object",
+  "properties": {
+    "views": {
+      "title": "Views",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/View"
+      }
+    }
+  },
+  "required": [
+    "views"
+  ],
+  "definitions": {
+    "Image": {
+      "title": "Image",
+      "type": "object",
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "dimensions": {
+          "title": "Dimensions",
+          "type": "array",
+          "items": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        }
+      },
+      "required": [
+        "source",
+        "dimensions"
+      ]
+    },
+    "RoofLine": {
+      "title": "RoofLine",
+      "type": "object",
+      "properties": {
+        "origin": {
+          "title": "Origin",
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "destination": {
+          "title": "Destination",
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "classification": {
+          "title": "Classification",
+          "enum": [
+            "ridge",
+            "eave",
+            "rake",
+            "hip",
+            "valley"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "origin",
+        "destination",
+        "classification"
+      ]
+    },
+    "View": {
+      "title": "View",
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/Image"
+        },
+        "roof_lines": {
+          "title": "Roof Lines",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RoofLine"
+          }
+        }
+      },
+      "required": [
+        "image",
+        "roof_lines"
+      ]
+    }
+  }
+}
